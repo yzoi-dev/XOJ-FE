@@ -15,7 +15,13 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-          }
+            scss: 'vue-style-loader!css-loader!sass-loader'
+          },
+          postcss: [
+            require('autoprefixer')({
+              browsers: ['last 2 versions']
+            })
+          ]
         }
       },
       {
@@ -54,6 +60,7 @@ module.exports = {
     })
   ],
   resolve: {
+    extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }

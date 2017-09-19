@@ -2,6 +2,6 @@ import network from './network'
 
 export default {
   login(credentials) {
-    return network.post('auth', credentials)
+    return network.post('users/login', credentials)
   }
 }
