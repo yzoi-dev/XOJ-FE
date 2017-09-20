@@ -52,7 +52,7 @@
 
         <ul class="nav">
 					<li>
-            <a data-toggle="collapse" href="#">
+            <a href="#">
               <i class="ti-home"></i>
               <p>首页</p>
             </a>

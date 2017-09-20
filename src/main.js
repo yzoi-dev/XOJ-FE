@@ -1,10 +1,11 @@
 import 'bootstrap'
+import 'jquery'
 import './assets/css/bootstrap.min.css'
 import './assets/css/font.css'
 import './assets/css/themify-icons.css'
 import './assets/css/xoj.css'
-import './assets/js/jquery-3.1.1.min.js'
-import './assets/js/jquery-ui.min.js'
+// import './assets/js/jquery-3.1.1.min.js'
+// import './assets/js/jquery-ui.min.js'
 import './assets/js/xoj.js'
 
 import Vue from 'vue'
