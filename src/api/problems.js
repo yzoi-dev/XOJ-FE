@@ -7,7 +7,10 @@ export default {
   fetchAll() {
     return network.get('problems')
   },
+  fetchPageCount() {
+    return network.get(`problems/count`)
+  },
   fetch(id) {
-    return network.get(`problem/${id}`)
+    return network.get(`problems/show/${id}`)
   }
 }

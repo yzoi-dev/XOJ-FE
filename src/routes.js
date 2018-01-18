@@ -2,6 +2,7 @@ import ProblemList from './page/ProblemList.vue'
 import Problem from './page/Problem.vue'
 import ContestList from './page/ContestList.vue'
 import Contest from './page/Contest.vue'
+import Submissions from './page/Submissions.vue'
 import Login from './page/Login.vue'
 
 export default [
@@ -9,5 +10,6 @@ export default [
   { path: '/problem/:id', name: 'problem', component: Problem, props: true },
   { path: '/contests/:page', name: 'contestList', component: ContestList, props: true },
   { path: '/contest/:id', name: 'contest', component: Contest, props: true },
+  { path: '/submissions/:page', name: 'submissions', component: Submissions, props: true },
   { path: '/login', name: 'login', component: Login, props: true }
 ]

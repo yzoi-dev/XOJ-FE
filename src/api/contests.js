@@ -8,15 +8,18 @@ export default {
     return network.get('contests')
   },
   fetch(id) {
-    return network.get(`contest/${id}`)
+    return network.get(`contests/show/${id}`)
   },
   fetchProblems(id) {
-    return network.get(`contest/${id}/problems`)
+    return network.get(`contests/${id}/problems`)
   },
   fetchStatus(id) {
-    return network.get(`contest/${id}/status`)
+    return network.get(`contests/${id}/status`)
   },
   fetchRanking(id) {
-    return network.get(`contest/${id}/ranking`)
+    return network.get(`contests/${id}/ranking`)
+  },
+  fetchPageCount() {
+    return network.get('contests/count')
   }
 }

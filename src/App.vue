@@ -1,7 +1,7 @@
 <template>
 
   <div id="app">
-    <div class="wrapper">
+    <div v-show="$route.name != 'login' && $route.name != 'register'" class="wrapper">
 		<div class="sidebar" data-background-color="brown" data-active-color="warning">
 			<div class="logo">
 				<a href="#" class="simple-text logo-mini">
@@ -51,19 +51,19 @@
         </div>
 
         <ul class="nav">
-					<li>
+					<li :class="{ active: $route.path == '/' }">
             <a href="#">
               <i class="ti-home"></i>
               <p>首页</p>
             </a>
           </li>
-					<li>
-            <a data-toggle="collapse" href="#dashboardOverview">
+					<li :class="{ active: $route.name == 'problemList' || $route.name == 'problem' }">
+            <router-link :to="`/problems/${volume}`">
               <i class="ti-agenda"></i>
               <p>训练题库</p>
-            </a>
+            </router-link>
           </li>
-					<li class="active">
+					<li>
             <a data-toggle="collapse" href="#componentsExamples" aria-expanded="true">
               <i class="ti-package"></i>
               <p>题库分类
@@ -71,7 +71,7 @@
               </p>
             </a>
 
-                      <div class="collapse in" id="componentsExamples">
+            <div class="collapse in" id="componentsExamples">
 							<ul class="nav">
 	                            <li class="active">
 									<a href="../components/buttons.html">
@@ -87,13 +87,13 @@
 								</li>
 
 	                        </ul>
-	                    </div>
+            </div>
 	                </li>
-					<li>
-						<a data-toggle="collapse" href="#dashboardOverview">
+					<li :class="{ active: $route.name == 'submissions' }">
+						<router-link to="/submissions/1">
 							<i class="ti-shield"></i>
 							<p>测评结果</p>
-						</a>
+			      </router-link>
 					</li>
 					<li>
 						<a data-toggle="collapse" href="#dashboardOverview">
@@ -101,11 +101,11 @@
 							<p>用户排名</p>
 						</a>
 					</li>
-					<li>
-						<a data-toggle="collapse" href="#dashboardOverview">
+					<li :class="{ active: $route.name == 'contestList' || $route.name == 'contest' }">
+						<router-link to="/contests/1">
 							<i class="ti-cup"></i>
 							<p>作业/比赛</p>
-						</a>
+						</router-link>
 					</li>
 					<li>
 						<a data-toggle="collapse" href="#dashboardOverview">
@@ -200,17 +200,31 @@
 	        </nav>
 
 	        <div class="content">
-            <router-view @loggedin="onLoggedIn"></router-view>
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
         	</div>
         </div>
       </div>
+      <div v-show="$route.name == 'login' || $route.name == 'register'" class="wrapper">
+        <div class="content">
+          <router-view @loggedin="onLoggedIn"></router-view>
+      	</div>
+      </div>
+      </keep-alive>
   </div>
 </template>
 
 <script>
 import Auth from './api/auth'
+import ProblemList from './page/ProblemList'
 
 export default {
+////////////
+  components: {
+    'ProblemList': ProblemList
+  },
+  //////////////
   name: 'app',
   data: function () {
     return {
@@ -236,6 +250,7 @@ export default {
     onLoggedIn: function (user) {
       this.loggedIn = true
       this.user = user
+      console.log(user)
     },
     routeTitle: function () {
       switch (this.$route.name) {
